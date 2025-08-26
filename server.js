@@ -1,33 +1,25 @@
-// Criando server nativo com Node puro
-
-// import {createServer} from 'node:http';
-
-// const server = createServer ((request, response) => {
-//     response.write('Servidor rodando!');
-//     return response.end();
-// })
-
-// server.listen(3333);
-
-// ------------------------------------------>
-
-// Criando server utilizando o Framework Fastify:
-
 import { fastify } from 'fastify';
+import { DatabaseMemory } from './database-memory.js';
 
 const server = fastify();
 
-server.get('/', () => {
-    return 'Hello World!';
+server.post('/videos', () => {
+    return 'Video criado';
 });
 
-server.get('/hello', () => {
-    return 'Hello User!';
+server.get('/videos', () => {
+    return 'Video listado';
 });
 
-server.get('/node', () => {
-    return 'Hello Node.js!';
+server.put('/videos:id', () => {
+    return 'Video atualizado';
 });
+
+server.delete('/videos:id', () => {
+    return 'Video deletado';
+});
+
+
 
 server.listen({
     port: 3333,
