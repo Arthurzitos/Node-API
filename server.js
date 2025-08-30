@@ -5,10 +5,11 @@ const server = fastify();
 const database = new DatabaseMemory();
 
 server.post('/videos', (request, reply) => {
+    const {title, description, duration }= request.body;
     database.create( {
-        title: 'Video 01',
-        description: 'Este é o vídeo 01',
-        duration: 180
+        title: title,
+        description: description,
+        duration: duration,
     });
 
     console.log(database.list()); // lista o vídeo criado no terminal
